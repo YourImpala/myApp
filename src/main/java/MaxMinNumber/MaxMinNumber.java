@@ -1,5 +1,6 @@
 package MaxMinNumber;
 
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -9,6 +10,8 @@ import java.util.Random;
  * @see #printArray()
  * @see #findMaxNegativeNumber()
  * @see #findMinPositiveNumber()
+ * @see #indexOf(int[], int)
+ * @see #swap(int, int)
  */
 public class MaxMinNumber {
 
@@ -33,6 +36,21 @@ public class MaxMinNumber {
         Random random = new Random();
 
         return  random.nextInt(maxRange - minRange) + minRange;
+    }
+
+    /**
+     *find index of array element
+     * @param arr array where want to find index
+     * @param search search element
+     * @return index of search element if found, if not found return -1
+     */
+    private int indexOf(int[] arr, int search) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == search) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -78,5 +96,25 @@ public class MaxMinNumber {
             }
         }
         return min;
+    }
+
+    /**
+     * swap two elements and return swaped array(copy of origin)
+     * @param a first element
+     * @param b second element
+     * @return new swaped array
+     */
+    public int[] swap(int a, int b) {
+        
+        int[] copy = this.arr.clone();
+        int indexA = indexOf(copy, a);
+        int indexB = indexOf(copy, b);
+
+
+        int tmp = copy[indexA];
+        copy[indexA] = copy[indexB];
+        copy[indexB] = tmp;
+
+        return copy;
     }
 }
