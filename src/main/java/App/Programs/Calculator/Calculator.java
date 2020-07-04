@@ -45,6 +45,9 @@ public class Calculator {
      * @return quotient of two numbers
      */
     public double div() {
+        if ( this.b == 0) {
+            throw new ArithmeticException("Cannot be divided by zero");
+        }
         return this.a / this.b;
     }
 }

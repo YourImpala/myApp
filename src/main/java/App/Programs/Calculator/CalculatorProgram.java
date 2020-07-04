@@ -18,6 +18,7 @@ public class CalculatorProgram extends Program {
      */
     @Override
     public void startProgram(Scanner scanner) throws Exception {
+        try {
         System.out.println("Welcome to calculator!");
         System.out.println("First number is: ");
         double a = scanner.nextDouble();
@@ -35,9 +36,15 @@ public class CalculatorProgram extends Program {
                 "/", () -> calculator.div()
         );
         try {
-            System.out.println(operations.get(operator).call());
-        } catch (Exception e) {
-            System.out.println("Wrong operand. Use : +, -, *, /");
+            if (operator != null) {
+                System.out.println(operations.get(operator).call());
+            }
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+        }
+
+        } catch (Exception e){
+            System.out.println("Incorrect value!");
         }
 
     }
