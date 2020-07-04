@@ -2,9 +2,9 @@ package App.Programs.Calculator;
 
 import App.Programs.Program;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.concurrent.Callable;
 
 /**
  * @author Dmitriy
@@ -17,7 +17,7 @@ public class CalculatorProgram extends Program {
      * @param scanner use to get input from console
      */
     @Override
-    public void startProgram(Scanner scanner) {
+    public void startProgram(Scanner scanner) throws Exception {
         System.out.println("Welcome to calculator!");
         System.out.println("First number is: ");
         double a = scanner.nextDouble();
@@ -28,27 +28,18 @@ public class CalculatorProgram extends Program {
         scanner.close();
 
         Calculator calculator = new Calculator(a, b);
-
-
-       switch(operator) {
-            case "+":
-                System.out.printf("The result is: %.2f", calculator.add());
-                break;
-
-            case "-" :
-                System.out.printf("%.2f", calculator.sub());
-                break;
-
-           case "*":
-                System.out.printf("%.2f", calculator.mul());
-               break;
-
-            case "/":
-                System.out.printf("%.2f", calculator.div());
-                break;
-            default:
-                System.out.println("Wrong operator detected, use +, -, /, *");
+        Map<String, Callable> operations = Map.of(
+                "+", () -> calculator.add(),
+                "-", () -> calculator.sub(),
+                "*", () -> calculator.mul(),
+                "/", () -> calculator.div()
+        );
+        try {
+            System.out.println(operations.get(operator).call());
+        } catch (Exception e) {
+            System.out.println("Wrong operand. Use : +, -, *, /");
         }
+
     }
 
 }

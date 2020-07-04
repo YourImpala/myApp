@@ -9,7 +9,7 @@ import App.Programs.LongestWord.LongestWordProgram;
  */
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println("1 - Calculator");
         System.out.println("2 - Longest word");
 
