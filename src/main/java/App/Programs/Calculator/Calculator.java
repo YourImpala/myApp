@@ -1,4 +1,4 @@
-package App;
+package App.Programs.Calculator;
 
 /**
  * @author Dmitriy

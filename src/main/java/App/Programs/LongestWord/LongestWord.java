@@ -1,4 +1,4 @@
-package App;
+package App.Programs.LongestWord;
 
 import java.util.Scanner;
 
