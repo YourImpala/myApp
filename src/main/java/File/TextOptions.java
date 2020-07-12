@@ -12,7 +12,8 @@ import java.util.Map;
  * @see #sortWords()
  * @see #getWordsStatistic()
  * @see #printWordsStatistic(Map)
- * @see #fidnMaxRepeatedWord(Map)
+ * @see #getMaxRepeats(Map) 
+ * @see #printMaxRepeatedWords(Map, int) 
  */
 public class TextOptions {
     private final String text;
@@ -84,17 +85,30 @@ public class TextOptions {
     }
 
     /**
-     * find and print word with max counter value
+     *
      * @param statistics statistics map object Map<String word, Integer count value>
+     * @return max count value of  repeated word
      */
-    public void fidnMaxRepeatedWord(Map<String, Integer> statistics) {
+    public int getMaxRepeats(Map<String, Integer> statistics) {
         Map.Entry<String, Integer> maxEntry = null;
         for (Map.Entry<String, Integer> el : statistics.entrySet()) {
             if (maxEntry == null || el.getValue().compareTo(maxEntry.getValue()) > 0) {
                 maxEntry = el;
             }
         }
-        System.out.println(maxEntry.getKey() + " : " + maxEntry.getValue());
+        return maxEntry.getValue();
+    }
+
+    /**
+     * print words with max counter value
+     * @param statistics statistics map object Map<String word, Integer count value>
+     */
+    public void printMaxRepeatedWords(Map<String, Integer> statistics, int maxRepeats) {
+        for (Map.Entry<String, Integer> el : statistics.entrySet()) {
+            if (el.getValue() == maxRepeats) {
+                System.out.println(el.getKey() + " : " + el.getValue());
+            }
+        }
     }
 
 }

@@ -2,6 +2,7 @@ import App.Programs.Calculator.Calculator;
 import org.junit.Assert;
 import org.junit.Test;
 
+
 public class CalcTests {
 
     @Test
@@ -18,7 +19,7 @@ public class CalcTests {
 
     @Test
     public void differenceOfTwoNumbers() {
-        Calculator calculator = new Calculator(55, -10.1);
+        Calculator calculator = new Calculator(55, 10.1);
         Assert.assertEquals("Difference of two numbers should equals 44.90", 44.90, calculator.sub(), 0);
     }
 
@@ -33,5 +34,17 @@ public class CalcTests {
     public void quotientOfTwoNumbers() {
         Calculator calculator = new Calculator(70, 33);
         Assert.assertEquals("Quotient of two numbers should equals 2.12", 2.12, calculator.div(), 0);
+    }
+
+    @Test
+    public void devisionByZero() {
+        try {
+            Calculator calculator = new Calculator(70, 0);
+            calculator.div();
+        } catch (Exception e) {
+            Assert.assertEquals("Cannot be divided by zero", e.getMessage());
+            return;
+        }
+        Assert.fail("Expected validation exception was not thrown");
     }
 }

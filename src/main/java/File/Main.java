@@ -25,7 +25,8 @@ public class Main {
         textOptions.printWordsStatistic(statistics);
 
         System.out.println("\nMax repeated word is: ");
-        textOptions.fidnMaxRepeatedWord(statistics);
+        int maxRepeats = textOptions.getMaxRepeats(statistics);
+        textOptions.printMaxRepeatedWords(statistics, maxRepeats);
 
     }
 }
